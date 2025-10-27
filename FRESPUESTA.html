@@ -76,8 +76,8 @@
                 background-color: #fff;
                 text-align: left;
 
-                /* Altura fija */
-                height: 60pt; 
+                /* Altura fija - AUMENTADA para que quepa todo el texto */
+                height: 75pt; /* Era 60pt */
                 box-sizing: border-box;
             }
 
@@ -89,7 +89,8 @@
                 /* Relleno para no chocar con header/footer */
                 /* AÑADIMOS 5pt EXTRA de espacio para evitar cortes */
                 padding-top: 85pt; /* Era 80pt */
-                padding-bottom: 65pt; /* Era 60pt */
+                /* AUMENTADO para coincidir con el nuevo pie de página + margen */
+                padding-bottom: 80pt; /* Era 65pt */
                 
                 /* Márgenes de la hoja */
                 margin-left: 10mm;
@@ -224,13 +225,31 @@
                 <div id="respuesta" class="mb-4">
                     <p>&lt;&lt;[RESPUESTA]&gt;&gt;</p>
                 </div>
+                
+                <!-- ===== BLOQUE DE FIRMA AÑADIDO ===== -->
+                <div class="mt-16" style="font-size: 12pt;">
+                    <p>Atentamente,</p>
+                    <br><br>
+                    <p><strong>ANTONIO OCORO GARCIA</strong><br>
+                    ADMINISTRADOR<br>
+                    CR. CAÑAVERALES 3<br>
+                    Carrera 61 No 18 16<br>
+                    Cali D.E.</p>
+                </div>
+                <!-- =================================== -->
+
             </div>
         </main>
 
-        <!-- ===== PIE DE PÁGINA ===== -->
-        <footer class="pie-impresion p-4 border-t" style="font-size: 10pt;">
-            <div class="flex justify-between text-left space-x-4">
-                <!-- Columna 1: Teléfonos -->
+        <!-- El pie de página se movió FUERA del 'contenedor-pagina-pantalla' -->
+
+    </div>
+
+    <!-- ===== PIE DE PÁGINA ===== -->
+    <!-- MOVIDO FUERA DEL DIV 'contenedor-pagina-pantalla' para arreglar la vista de pantalla -->
+    <footer class="pie-impresion p-4 border-t" style="font-size: 10pt;">
+        <div class="flex justify-between text-left space-x-4">
+            <!-- Columna 1: Teléfonos -->
                 <div class="w-1/3">
                     <h4 class="font-bold">Teléfonos de Contactos</h4>
                     <p>OFICINA: 324-3371948</p>
@@ -290,6 +309,8 @@
                     const contenedorImagen = document.getElementById('imagen-placeholder');
                     // Reemplazamos el div del placeholder con una etiqueta <img>
                     contenedorImagen.innerHTML = `<img src="${imagenUrl}" alt="Imagen de AppSheet" class="img-fluida">`;
+                    // Y quitamos la clase 'img-placeholder' para eliminar el borde
+                    contenedorImagen.classList.remove('img-placeholder');
                 }
  
                 // 6. Finalmente, llamar a la impresión
@@ -309,5 +330,7 @@
 
 </body>
 </html>
+
+
 
 
