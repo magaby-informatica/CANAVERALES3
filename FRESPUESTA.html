@@ -87,8 +87,9 @@
                 font-size: 12pt;
                 
                 /* Relleno para no chocar con header/footer */
-                padding-top: 80pt;
-                padding-bottom: 60pt;
+                /* AÑADIMOS 5pt EXTRA de espacio para evitar cortes */
+                padding-top: 85pt; /* Era 80pt */
+                padding-bottom: 65pt; /* Era 60pt */
                 
                 /* Márgenes de la hoja */
                 margin-left: 10mm;
@@ -267,34 +268,30 @@
                     const valor = params.get(parametro);
                     if (valor) {
                         // Usamos innerHTML para que respete los saltos de línea (si los hubiera)
-                        document.getElementById(id).innerHTML = decodeURIComponent(valor);
+                        // NOTA: Quitamos decodeURIComponent(), ya que URLSearchParams.get() lo hace automáticamente.
+                        document.getElementById(id).innerHTML = valor;
                     }
                 }
-
-                // 3. Llenar todos los campos de texto
-                actualizarCampo('radicado_p', 'radicado_p');
-                actualizarCampo('radicado_rep', 'radicado_rep');
-                actualizarCampo('fecha', 'fecha');
-                actualizarCampo('asunto', 'asunto');
-                
+ 
                 // 4. Llenar la respuesta (maneja saltos de línea)
                 const respuesta = params.get('respuesta');
                 if (respuesta) {
                     // Reemplazamos \n (salto de línea) con <br> para que se vea en HTML
-                    const respuestaHtml = decodeURIComponent(respuesta).replace(/\n/g, '<br>');
+                    // NOTA: Quitamos decodeURIComponent()
+                    const respuestaHtml = respuesta.replace(/\n/g, '<br>');
                     document.getElementById('respuesta').innerHTML = respuestaHtml;
                 }
-
+ 
                 // 5. Manejar la imagen
                 // ESTA ES LA PARTE CLAVE
                 const imagenUrl = params.get('imagen');
                 if (imagenUrl) {
-                    const urlDecodificada = decodeURIComponent(imagenUrl);
+                    // NOTA: Quitamos decodeURIComponent()
                     const contenedorImagen = document.getElementById('imagen-placeholder');
                     // Reemplazamos el div del placeholder con una etiqueta <img>
-                    contenedorImagen.innerHTML = `<img src="${urlDecodificada}" alt="Imagen de AppSheet" class="img-fluida">`;
+                    contenedorImagen.innerHTML = `<img src="${imagenUrl}" alt="Imagen de AppSheet" class="img-fluida">`;
                 }
-
+ 
                 // 6. Finalmente, llamar a la impresión
                 // Usamos un pequeño retraso para asegurar que la imagen (si existe) 
                 // tenga tiempo de empezar a cargarse.
@@ -312,3 +309,5 @@
 
 </body>
 </html>
+
+
