@@ -164,14 +164,33 @@
     </style>
 </head>
 <!-- 
-  AÑADIMOS EL SCRIPT DE "AUTORELLENO" Y "AUTOIMPRESIÓN" 
-  Este es el código "inteligente" que lee la URL.
+    AÑADIMOS EL SCRIPT DE "AUTORELLENO" Y "AUTOIMPRESIÓN" 
+    Este es el código "inteligente" que lee la URL.
 -->
 <body onload="llenarYImprimir()" class="bg-gray-100">
 
     <!-- 
-      Este es el contenedor que verás en PANTALLA.
-      Los estilos de @media print se aplicarán a los elementos internos.
+        *** NOTA IMPORTANTE SOBRE CÓMO USAR ESTE ARCHIVO ***
+        
+        Este archivo HTML está diseñado para ser una "plantilla".
+        NO mostrará la imagen ni el texto por sí solo.
+        
+        El script (al final) lee la barra de direcciones del navegador (la URL)
+        para buscar "parámetros".
+        
+        Para que la IMAGEN aparezca, debes llamar a este archivo
+        agregando "?imagen=URL_DE_LA_IMAGEN" al final de la dirección.
+        
+        EJEMPLO DE CÓMO LLAMARLO EN EL NAVEGADOR:
+        .../tu_archivo.html?imagen=https://placehold.co/112x112/EEE/333?text=Logo
+        
+        Para llenar todo, la URL se vería así:
+        .../tu_archivo.html?radicado_p=D-123&fecha=27/10/2025&asunto=Prueba&respuesta=Este+es+el+cuerpo&imagen=https://placehold.co/112x112/EEE/333?text=Logo
+    -->
+
+    <!-- 
+        Este es el contenedor que verás en PANTALLA.
+        Los estilos de @media print se aplicarán a los elementos internos.
     -->
     <div class="contenedor-pagina-pantalla">
 
@@ -233,8 +252,8 @@
     </div>
 
     <!-- 
-      ESTE ES EL JAVASCRIPT "INTELIGENTE"
-      Lee los parámetros de la URL y llena el documento.
+        ESTE ES EL JAVASCRIPT "INTELIGENTE"
+        Lee los parámetros de la URL y llena el documento.
     -->
     <script>
         function llenarYImprimir() {
@@ -267,6 +286,7 @@
                 }
 
                 // 5. Manejar la imagen
+                // ESTA ES LA PARTE CLAVE
                 const imagenUrl = params.get('imagen');
                 if (imagenUrl) {
                     const urlDecodificada = decodeURIComponent(imagenUrl);
@@ -292,4 +312,3 @@
 
 </body>
 </html>
-
