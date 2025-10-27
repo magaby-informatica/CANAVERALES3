@@ -115,13 +115,14 @@
          * Esto es solo para que se vea bien en el navegador.
          */
         .contenedor-pagina-pantalla {
-            max-width: 800px;
-            margin: 2rem auto;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            overflow: hidden; /* para los bordes redondeados */
-            background: white;
+            /* Se eliminan los estilos que crean el "cuadro" */
+            /* max-width: 800px; */
+            /* margin: 2rem auto; */
+            /* border: 1px solid #ddd; */
+            /* border-radius: 8px; */
+            /* box-shadow: 0 4px 12px rgba(0,0,0,0.05); */
+            /* overflow: hidden; */
+            background: white; /* Mantenemos el fondo blanco */
         }
         
         /*
@@ -169,7 +170,7 @@
     AÑADIMOS EL SCRIPT DE "AUTORELLENO" Y "AUTOIMPRESIÓN" 
     Este es el código "inteligente" que lee la URL.
 -->
-<body onload="llenarYImprimir()" class="bg-gray-100">
+<body onload="llenarYImprimir()" class=""> <!-- Se quita bg-gray-100 -->
 
     <!-- 
         *** NOTA IMPORTANTE SOBRE CÓMO USAR ESTE ARCHIVO ***
@@ -330,6 +331,7 @@
 
 </body>
 </html>
+
 
 
 
